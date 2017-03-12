@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel  Panel Admin
+	</ui:define>
+
+
+	<ui:define name="content">
+		<ui:fragment rendered="#{loginBB.hasEmployeeRights('admin')}">
+			<h:form id="data">
+				<fieldset style="border-radius: 0.2em;">
+					<legend>Opcje wyszukiwania</legend>
+					<h:panelGrid columns="5" cellpadding="5">
+						<p:outputLabel value="Data from" />
+						<p:inputText value="#{adminBB.dataFrom}" />
+						<p:outputLabel value="    " />
+						<p:outputLabel value="Data end" />
+						<p:inputText value="#{adminBB.dataTo}" />
+						<p:commandButton value="Szukaj" update="table" />
+					</h:panelGrid>
+				</fieldset>
+			</h:form>
+			<br></br>
+
+			<br></br>
+
+			<p:dataTable var="booking" paginator="true" rows="10"
+				value="#{adminBB.listLazy}"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15" selectionMode="single" id="table"
+				lazy="true">
+
+
+
+				<p:column headerText="Date from">
+					<h:outputText value="#{booking.dateFrom}" />
+				</p:column>
+
+				<p:column headerText="Date to">
+					<h:outputText value="#{booking.datoTo}" />
+				</p:column>
+
+				<p:column headerText="Active">
+					<h:outputText value="#{booking.active}" />
+				</p:column>
+
+				<p:column headerText="Edit">
+					<h:form>
+						<p:commandButton value="Edit" styleClass="ui-priority-primary"
+							action="#{bookingBB.editBooking(booking)}" />
+					</h:form>
+				</p:column>
+
+			</p:dataTable>
+			<br />
+			<h:form>
+				<p:commandButton value="Add Booking" id="ajax"
+					action="#{bookingBB.newBooking()}" styleClass="ui-priority-primary" />
+			</h:form>
+			<br />
+		</ui:fragment>
+	</ui:define>
+
+</ui:composition>
+</html>

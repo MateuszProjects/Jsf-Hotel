@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel Bookign
+	</ui:define>
+
+
+	<ui:define name="content">
+		<div class="col-md-6">
+			<h:form>
+				<fieldset style="padding: 1em; border-radius: 0.2em;">
+					<legend>Edycja rekordu</legend>
+					<h:panelGrid columns="2" cellpadding="5">
+
+
+						<h:outputLabel value="Name" />
+						<h:inputText value="#{employeeEditBB.name}" />
+
+						<h:outputLabel value="Surname" />
+						<h:inputText value="#{employeeEditBB.surname}" />
+
+						<h:outputLabel value="Address" />
+						<h:inputText value="#{employeeEditBB.address}" />
+
+						<h:outputLabel value="Data Birth" />
+						<h:inputText value="#{employeeEditBB.databirth}" />
+
+						<h:outputLabel value="Login" />
+						<h:inputText value="#{employeeEditBB.login}" />
+
+						<h:outputLabel value="pass" />
+						<h:inputText value="#{employeeEditBB.pass}" />
+
+
+					</h:panelGrid>
+					<h:messages />
+					<h:commandButton value="Zapisz"
+						action="#{employeeEditBB.saveData()}" />
+				</fieldset>
+			</h:form>
+		</div>
+		<div class="col-md-6"></div>
+	</ui:define>
+
+</ui:composition>
+</html>

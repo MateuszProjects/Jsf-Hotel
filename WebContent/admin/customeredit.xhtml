@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel 
+	</ui:define>
+
+
+	<ui:define name="content">
+
+
+<div class="col-md-6">
+
+
+
+			<h:form>
+				<p:panel id="panel" header="Form" style="margin-bottom:10px;">
+					<p:messages id="messages" />
+					<h:panelGrid columns="2" cellpadding="5">
+
+
+
+						<p:outputLabel value="postCode:" />
+						<p:inputText required="true" value="#{customerEditBB.postCode}" />
+
+						<p:outputLabel value="Name:" />
+						<p:inputText required="true" value="#{customerEditBB.name}" />
+
+						<p:outputLabel value="Surname:" />
+						<p:inputText required="true" value="#{customerEditBB.surname}" />
+
+						<p:outputLabel value="dataBirth:" />
+						<p:inputText required="false" value="#{customerEditBB.dataBirth}" />
+
+						<p:outputLabel value="City:" />
+						<p:inputText required="true" value="#{customerEditBB.city}" />
+
+						<p:outputLabel value="login:" />
+						<p:inputText required="true"  value="#{customerEditBB.login}"/>
+
+						<p:outputLabel value="Pass:" />
+						<p:inputText required="true" value="#{customerEditBB.pass}" />
+					</h:panelGrid>
+				</p:panel>
+
+				<p:commandButton value="Submit" update="panel"
+					action="#{customerEditBB.saveData()}" />
+			</h:form>
+
+</div>
+
+
+<div class="col-md-6"></div>
+	</ui:define>
+
+</ui:composition>
+</html>

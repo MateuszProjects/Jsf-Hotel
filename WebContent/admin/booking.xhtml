@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel Bookign
+	</ui:define>
+
+
+	<ui:define name="content">
+
+		<h:form>
+			<fieldset style="border-radius: 0.2em;">
+				<legend>Opcje wyszukiwania</legend>
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="idCustomer" />
+					<p:inputText value="#{bookingBB.idCustomer}" />
+					<p:commandButton value="Szukaj" update="table" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+
+		<br></br>
+		<br></br>
+
+
+
+
+
+
+		
+		<p:dataTable id="table" var="booking" value="#{bookingBB.list}" paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+			style="margin-bottom:20px">
+			
+			
+			<p:column headerText="Id Booking">
+				<h:outputText value="#{booking.idBoocking}" />
+			</p:column>
+
+			<p:column headerText="Date From">
+				<h:outputText value="#{booking.dateFrom}" />
+			</p:column>
+
+			<p:column headerText="Date to">
+				<h:outputText value="#{booking.datoTo}" />
+			</p:column>
+
+			<p:column headerText="Active">
+				<h:outputText value="#{booking.active}" />
+			</p:column>
+			
+			<p:column headerText="Edit">
+				<h:form>
+					<p:commandButton value="Edit" styleClass="ui-priority-primary"
+						action="#{bookingBB.editBooking(booking)}" />
+				</h:form>
+			</p:column>
+			<p:column headerText="Add Payment">
+				<h:form>
+					<p:commandButton value="Payment" styleClass="ui-priority-primary"
+						action="#{bookingBB.addPayment(booking)}" />
+				</h:form>
+			</p:column>
+		</p:dataTable>
+
+
+		<br />
+		<h:form>
+			<p:commandButton value="Add Booking" id="ajax"
+				action="#{bookingBB.newBooking()}" styleClass="ui-priority-primary" />
+		</h:form>
+
+		<br />
+		<br />
+		<br />
+		<br />
+
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>

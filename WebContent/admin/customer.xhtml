@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel  Customer
+	</ui:define>
+
+
+	<ui:define name="content">
+
+		<h:form>
+			<fieldset style="border-radius: 0.2em;">
+				<legend>Opcje wyszukiwania</legend>
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="idCustomer" />
+					<p:inputText value="#{customerBB.idCustomer}" />
+					<p:outputLabel value="Name" />
+					<p:inputText value="#{customerBB.name}" />
+					<p:outputLabel value="Surname" />
+					<p:inputText value="#{customerBB.surname}" />
+					<p:commandButton value="Szukaj" update="table" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+
+		<br></br>
+		<br></br>
+					<p:dataTable var="customer" paginator="true" rows="10"
+				value="#{customerBB.lazyList}"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15" selectionMode="single" id="table"
+				lazy="true">
+
+
+			<p:column headerText="Name">
+				<h:outputText value="#{customer.name}" />
+			</p:column>
+
+			<p:column headerText="Surname">
+				<h:outputText value="#{customer.surname}" />
+			</p:column>
+
+			<p:column headerText="City">
+				<h:outputText value="#{customer.city}" />
+			</p:column>
+
+			<p:column headerText="Data Birth">
+				<h:outputText value="#{customer.databirth}" />
+			</p:column>
+
+			<p:column headerText="Post Code">
+				<h:outputText value="#{customer.postCode}" />
+			</p:column>
+
+
+
+			<p:column headerText="Edit">
+				<h:form>
+					<p:commandButton value="Edit"
+						action="#{customerBB.editCustomer(customer)}" />
+				</h:form>
+			</p:column>
+
+			<p:column headerText="Add">
+				<h:form>
+					<p:commandButton value="Add "
+						action="#{customerBB.newBooking(customer)}" />
+				</h:form>
+				<h:form>
+					<p:commandButton value="Search "
+						action="#{customerBB.searchCustomer(customer)}" />
+				</h:form>
+			</p:column>
+
+			</p:dataTable>
+				
+
+
+	
+
+		<br></br>
+		<h:form style="margin-bottom:1em;">
+			<p:commandButton value="Dodaj nową osobę"
+				action="#{customerBB.newCustomer()}" />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

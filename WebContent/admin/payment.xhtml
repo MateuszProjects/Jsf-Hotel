@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel  Payment
+	</ui:define>
+
+
+	<ui:define name="content">
+		<h:form>
+			<fieldset style="border-radius: 0.2em;">
+				<legend>Opcje wyszukiwania</legend>
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="amount" />
+					<p:inputText  value="#{paymentBB.amount}"/>
+					<p:commandButton value="Szukaj" update="table" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+
+		<br></br>
+		<br></br>
+
+		<p:dataTable id="table" var="payment" value="#{paymentBB.list}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+			paginator="true" rows="10" style="margin-bottom:20px">>
+
+
+
+			<p:column headerText="Amount">
+				<h:outputText value="#{payment.amount}" />
+			</p:column>
+
+			<p:column headerText="Payment date">
+				<h:outputText value="#{payment.paymentData}" />
+			</p:column>
+
+			<p:column headerText="Paid">
+				<h:outputText value="#{payment.paid}" />
+			</p:column>
+			<p:column headerText="Edit">
+				<h:form>
+					<p:commandButton value="Edit"
+						action="#{paymentBB.editPayment(payment)}"
+						styleClass="ui-priority-primary" />
+				</h:form>
+			</p:column>
+
+		</p:dataTable>
+
+		<br />
+		<h:form>
+			<p:commandButton value="New Payment" id="ajax"
+				action="#{paymentBB.newPayment()}" styleClass="ui-priority-primary" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

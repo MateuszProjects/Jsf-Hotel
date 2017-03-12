@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel Room
+	</ui:define>
+
+
+	<ui:define name="content">
+	
+		<h:form>
+			<fieldset style="border-radius: 0.2em;">
+				<legend>Opcje wyszukiwania</legend>
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="price" />
+					<p:inputText  value="#{roomBB.price}"/>
+					<p:outputLabel value="floor" />
+					<p:inputText  value="#{roomBB.floor}"/>
+					<p:commandButton value="Szukaj" update="table" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+
+		<br></br>
+		<br></br>
+		<p:dataTable id="table" var="room" value="#{roomBB.listf}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+			paginator="true" rows="10" style="margin-bottom:20px">>
+
+
+			<p:column headerText="Room floor">
+				<h:outputText value="#{room.roomFloor}" />
+			</p:column>
+
+			<p:column headerText="price per day">
+				<h:outputText value="#{room.pricePerDay}" />
+			</p:column>
+
+			<p:column headerText="Description room">
+				<h:outputText value="#{room.descriptionRoom}" />
+			</p:column>
+			<p:column headerText="Edit">
+				<h:form>
+					<h:commandButton value="Edit" styleClass="ui-priority-primary"
+						action="#{roomBB.editRight(room)}" />
+				</h:form>
+			</p:column>
+			<p:column headerText="Add Type Room">
+				<h:form>
+					<h:commandButton value="TypeRoom" styleClass="ui-priority-primary"
+						action="#{roomBB.addTypeRoom()}" />
+				</h:form>
+			</p:column>
+		</p:dataTable>
+
+		<br />
+		<h:form>
+			<p:commandButton value="New Room" id="ajax"
+				action="#{roomBB.newRoom()}" styleClass="ui-priority-primary" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

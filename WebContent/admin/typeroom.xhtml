@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel Type Room
+	</ui:define>
+
+
+	<ui:define name="content">
+
+
+
+		<br></br>
+		<br></br>
+		<p:dataTable id="table" var="typeroom" value="#{typeroomBB.list}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+			paginator="true" rows="10" style="margin-bottom:20px">
+
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="RoomStandard" />
+				</f:facet>
+				<h:outputText value="#{typeroom.roomStandartStar}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="roomDescription" />
+				</f:facet>
+				<h:outputText value="#{typeroom.roomTypeDescription}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Edit" />
+				</f:facet>
+				<h:form>
+					<p:commandButton value="Edit"
+						action="#{typeroomBB.editTyperoom(typeroom)}"
+						styleClass="ui-priority-primary" />
+				</h:form>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Deleate" />
+				</f:facet>
+
+			</p:column>
+
+		</p:dataTable>
+		<br />
+		<h:form>
+			<p:commandButton value="Add Type Room" id="ajax"
+				action="#{typeroomBB.newTyperoom()}"
+				styleClass="ui-priority-primary" />
+		</h:form>
+
+
+
+	</ui:define>
+
+</ui:composition>
+</html>

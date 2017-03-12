@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+	Hotel  Rights
+	</ui:define>
+
+
+	<ui:define name="content">
+	
+			<p:dataTable var="right" value="#{rightBB.list}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+				paginator="true" rows="10" style="margin-bottom:20px">>
+
+
+			<p:column headerText="idRight">
+					<h:outputText value="#{right.idRight}" />
+				</p:column>
+				<p:column headerText="Name">
+					<h:outputText value="#{right.name}" />
+				</p:column>
+				<p:column headerText="Edit">
+					<h:form>
+						<p:commandButton value="Edit" styleClass="ui-priority-primary"
+							action="#{rightBB.editRight(right)}" />
+					</h:form>
+				</p:column>
+				<p:column headerText="Deleate">
+					<h:form>
+						<p:commandButton value="Deleate" styleClass="ui-priority-primary"
+							action="#{rightBB.delete(right)}" />
+					</h:form>
+				</p:column>
+			</p:dataTable>
+
+			<br />
+			<h:form>
+				<p:commandButton value="new Rights" id="ajax"
+					action="#{rightBB.newRight()}" styleClass="ui-priority-primary" />
+			</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>
