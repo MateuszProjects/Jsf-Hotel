@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd"
+	id="Application_ID" version="7">
+	<display-name>jsf_HotelJee_EAR</display-name>
+	<module>
+		<web>
+			<web-uri>jsf_Hotel_web.war</web-uri>
+			<context-root>jsf_Hotel</context-root>
+		</web>
+	</module>
+	<module>
+		<ejb>jsf_Hotel_EJB.jar</ejb>
+	</module>
+</application>
