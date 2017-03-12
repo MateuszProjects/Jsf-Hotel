@@ -23,7 +23,7 @@ public class BookingDAO {
 	 * Funkcja do szukania obiektu booking po
 	 * przekaznym w parametrze id obiektu
 	 * @param id
-	 * @return
+	 * @return Object booking
 	 */
 	public Boocking find(int id) {
 		return em.find(Boocking.class, id);
