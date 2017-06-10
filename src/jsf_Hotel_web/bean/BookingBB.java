@@ -26,9 +26,27 @@ public class BookingBB implements Serializable {
 
 	Integer idBooking;
 	Integer idCustomer;
+	String dateFrom;
+	String dateEnd;
 
 	Integer limit;
 	Integer offset;
+
+	public String getDateFrom() {
+		return dateFrom;
+	}
+
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+
+	public String getDateEnd() {
+		return dateEnd;
+	}
+
+	public void setDateEnd(String dateEnd) {
+		this.dateEnd = dateEnd;
+	}
 
 	public Integer getIdBooking() {
 		return idBooking;
@@ -83,6 +101,14 @@ public class BookingBB implements Serializable {
 
 		if (idCustomer != null) {
 			searchParams.put("idCustomer", idCustomer);
+		}
+		
+		if(dateEnd != null){
+			searchParams.put("dataEnd", dateEnd);
+		}
+		
+		if(dateFrom != null){
+			searchParams.put("dataStart", dateFrom);
 		}
 
 		list = bookingDAO.getListSearch(searchParams);
