@@ -12,6 +12,7 @@ Module Add Booking: </br>
 Module Add Payment: </br>
 
 Module Add Room: </br>
-- Add descriptnio for room.
+- Add/Edit description for room.
 
 Moduele Custome: </br>
+
